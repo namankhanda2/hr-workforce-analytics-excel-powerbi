@@ -42,6 +42,23 @@ Excel Tables, native charts, AutoFilter, number formatting.
 | Highest attrition   | Customer Support (29.4%), Operations (25.0%), Sales (22.2%) |
 | Pay gap (M vs F)    | uneven by level — see Insights / Power BI matrix |
 
+## Live interactive dashboard
+
+A Power BI-style dashboard (same KPIs and visuals as the report, rendered in the
+browser) is deployed to GitHub Pages:
+
+**https://namankhanda2.github.io/hr-workforce-analytics-excel-powerbi/**
+
+Source: `dashboard/html_build.py` builds `docs/index.html` (single self-contained
+file with an embedded dataset — works offline). It includes:
+
+- KPI cards: total employees, active, attrition, avg salary, avg age, avg tenure
+- Gender & age-band distribution, headcount by department, role distribution
+- Hiring trend (hires vs exits by year), attrition by department and role
+- Avg salary by department; department/gender/hire-year filters recompute everything
+
+`docs/preview.png` is a static screenshot of the dashboard.
+
 ## Power BI
 
 `data/powerbi/` ships a ready-to-import star schema:
@@ -55,6 +72,11 @@ Full step-by-step build (load → relationships → DAX → report pages → pub
 ```
 ├── generate_hr_data.py        # synthetic raw dataset + star-schema CSVs
 ├── build_excel.py             # builds excel/HR_Workforce_Analytics.xlsx
+├── dashboard/
+│   └── html_build.py          # builds docs/index.html (Power BI-style web dashboard)
+├── docs/
+│   ├── index.html             # live dashboard (deployed to GitHub Pages)
+│   └── preview.png            # dashboard screenshot
 ├── data/
 │   ├── raw/hr_employees_raw.csv    # messy, as-collected
 │   ├── hr_cleaned.csv              # cleaned flat file
